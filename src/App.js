@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import Header from "./Components/Header";
+import "./app.css";
+import React, { useState, useRef } from "react";
 
 function App() {
-  return (
+  const [input, setInput] = useState("");
+  const inputField = useRef("");
+
+  const clickHandler = () =>{
+    // inputField.current.focus();
+    // inputField.current.value = "Vibhu ";
+    console.log(inputField.current.value);
+    inputField.current.style.border = "2px solid red";
+  }
+
+  const formHandler = (e) => {
+    setInput(e.target.value);
+  };
+  return (  
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <input ref = {inputField} type="text" value={input} onChange={formHandler} />
+      {/* <h4>Application has been rendered {counter.current} times</h4> */}
+      {/* <h4>Prev State was {prevState.current}  </h4> */}
+      <button onClick = {clickHandler}>Click me</button>
     </div>
   );
 }
